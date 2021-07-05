@@ -1,6 +1,31 @@
 {
   "version": 1,
   "projects": {
+    "bb-ui": {
+      "projectType": "library",
+      "root": "libs/bb-ui",
+      "sourceRoot": "libs/bb-ui/src",
+      "prefix": "app",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/bb-ui/src/test.ts",
+            "tsConfig": "libs/bb-ui/tsconfig.spec.json",
+            "karmaConfig": "libs/bb-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/bb-ui/src/**/*.ts",
+              "libs/bb-ui/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "peachtree": {
       "projectType": "application",
       "root": "apps/peachtree",
