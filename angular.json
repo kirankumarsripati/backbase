@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "projects": {
+    "peachtree": {
+      "projectType": "application",
+      "root": "apps/peachtree",
+      "sourceRoot": "apps/peachtree/src",
+      "prefix": "bb",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/peachtree",
+            "index": "apps/peachtree/src/index.html",
+            "main": "apps/peachtree/src/main.ts",
+            "polyfills": "apps/peachtree/src/polyfills.ts",
+            "tsConfig": "apps/peachtree/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/peachtree/src/favicon.ico",
+              "apps/peachtree/src/assets"
+            ],
+            "styles": ["apps/peachtree/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/peachtree/src/environments/environment.ts",
+                  "with": "apps/peachtree/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "peachtree:build:production"
+            },
+            "development": {
+              "browserTarget": "peachtree:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "peachtree:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/peachtree/src/**/*.ts",
+              "apps/peachtree/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/peachtree"],
+          "options": {
+            "jestConfig": "apps/peachtree/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "peachtree-e2e": {
+      "root": "apps/peachtree-e2e",
+      "sourceRoot": "apps/peachtree-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/peachtree-e2e/cypress.json",
+            "tsConfig": "apps/peachtree-e2e/tsconfig.e2e.json",
+            "devServerTarget": "peachtree:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "peachtree:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/peachtree-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "peachtree"
+}
