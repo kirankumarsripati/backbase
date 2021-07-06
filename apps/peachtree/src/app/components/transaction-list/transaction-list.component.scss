@@ -1,0 +1,44 @@
+@import 'vars';
+
+.transaction-item {
+  display: flex;
+  align-items: center;
+  padding-top: $medium-spacing;
+  padding-bottom: $medium-spacing;
+}
+
+.transaction-item + .transaction-item {
+  border-top: 1px solid $color-gray2;
+}
+
+.transaction-color {
+  width: 6px;
+  align-self: stretch;
+}
+
+.transaction-date {
+  margin-left: $medium-spacing;
+  margin-right: $medium-spacing;
+}
+
+::ng-deep .merchant-details {
+  flex-grow: 1;
+  padding: $large-spacing $medium-spacing $large-spacing;
+}
+
+.transaction-merchant-name {
+  font-size: 1.2rem;
+}
+
+.transaction-type {
+  font-size: 0.8rem;
+  color: $color-gray1;
+}
+
+.credit {
+  color: $color-credit;
+}
+
+.debit {
+  color: $color-debit;
+}

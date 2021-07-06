@@ -17,3 +17,29 @@ app-footer footer {
 .main {
   padding: 60px 0;
 }
+
+.card-primary {
+  border: none;
+  border-radius: 15px;
+  .card-header {
+    background: $primary-blue;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    align-items: center;
+    color: $white;
+    padding: $large-spacing;
+  }
+  .card-header-icon {
+    font-size: 1.8rem;
+    margin-right: 15px;
+  }
+  .card-title {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+}
+
+.btn-primary {
+  border-color: darken($primary-orange, 8);
+}

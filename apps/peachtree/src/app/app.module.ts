@@ -3,11 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BbUIModule } from '@bb/bb-ui';
 
 import { AppComponent } from './app.component';
-import { MakeTransferComponent } from './make-transfer/make-transfer.component';
-import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import { MakeTransferComponent } from './components/make-transfer/make-transfer.component';
+import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { FilterByPipe } from './pipes/filter-by.pipe';
 
 @NgModule({
-  declarations: [AppComponent, MakeTransferComponent, TransactionListComponent],
+  declarations: [
+    AppComponent,
+    MakeTransferComponent,
+    TransactionListComponent,
+    FilterByPipe,
+  ],
   imports: [
     BrowserModule,
     BbUIModule,
