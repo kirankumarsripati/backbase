@@ -1,0 +1,6 @@
+@import "vars";
+
+// any variables to override from bootstrap
+$blue: $primary-blue;
+
+@import "~bootstrap/scss/bootstrap";

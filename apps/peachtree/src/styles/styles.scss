@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap';
+@import 'main';
+
+.header {
+  padding: $large-spacing;
+}
+
+app-footer footer {
+  padding: $medium-spacing;
+}
+
+.main {
+  padding: 60px 0;
+}
