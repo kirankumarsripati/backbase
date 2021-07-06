@@ -6,9 +6,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent {
-  @Output() inputChange: EventEmitter<Event> = new EventEmitter();
+  @Output() inputChange: EventEmitter<string> = new EventEmitter();
 
   onInputChange(event: Event): void {
-    this.inputChange.emit(event);
+    this.inputChange.emit((event.target as HTMLInputElement)?.value || '');
   }
 }
