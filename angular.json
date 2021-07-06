@@ -46,7 +46,7 @@
               "apps/peachtree/src/favicon.ico",
               "apps/peachtree/src/assets"
             ],
-            "styles": ["apps/peachtree/src/styles/styles.scss"],
+            "styles": ["apps/peachtree/src/styles.scss"],
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [ "libs/bb-ui/src/lib/styles" ]

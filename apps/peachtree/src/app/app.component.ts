@@ -15,7 +15,7 @@ export class AppComponent {
       },
       transaction: {
         amountCurrency: {
-          amount: -5000,
+          amount: 5000,
           currencyCode: 'EUR',
         },
         type: 'Salaries',

@@ -2,7 +2,7 @@
   <div class="card-header"><i class="card-header-icon lni lni-list"></i><h5 class="card-title">Transaction <strong> List</strong></h5></div>
   <div class="card-body">
     <app-filter (inputChange)="filter = $event"></app-filter>
-    <div class="transaction-items">
+    <div class="transaction-list">
       <app-transaction-item class="transaction-item" *ngFor="let item of transactions | filterBy:'merchant.name':filter">
         <div data-test-hook='transactionColour'
           class="transaction-color"
@@ -18,11 +18,12 @@
           {{ item.transaction.type }}
         </div>
         <div data-test-hook='transactionAmount'
+          class="transaction-amount"
           [ngClass]="{
-            credit: item.transaction.creditDebitIndicator === 'DBIT',
-            debit: item.transaction.creditDebitIndicator === 'CRDT'
+            credit: item.transaction.creditDebitIndicator === 'CRDT',
+            debit: item.transaction.creditDebitIndicator === 'DBIT'
           }">
-          {{ item.transaction.amountCurrency.amount | currency:item.transaction.amountCurrency.currencyCode:'symbol':'1.0-2' }}
+          {{ (item.transaction.creditDebitIndicator === 'DBIT' ? -item.transaction.amountCurrency.amount : item.transaction.amountCurrency.amount) | currency:item.transaction.amountCurrency.currencyCode:'symbol':'1.0-2' }}
         </div>
       </app-transaction-item>
     </div>

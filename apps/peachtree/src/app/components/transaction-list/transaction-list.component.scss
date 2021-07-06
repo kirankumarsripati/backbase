@@ -1,5 +1,10 @@
 @import 'vars';
 
+.transaction-list {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
 .transaction-item {
   display: flex;
   align-items: center;
@@ -33,6 +38,10 @@
 .transaction-type {
   font-size: 0.8rem;
   color: $color-gray1;
+}
+
+.transaction-amount {
+  padding-right: $small-spacing;
 }
 
 .credit {
