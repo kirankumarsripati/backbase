@@ -3,9 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BbUIModule } from '@bb/bb-ui';
 
 import { AppComponent } from './app.component';
+import { MakeTransferComponent } from './make-transfer/make-transfer.component';
+import { TransactionListComponent } from './transaction-list/transaction-list.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MakeTransferComponent, TransactionListComponent],
   imports: [
     BrowserModule,
     BbUIModule,

@@ -2,51 +2,15 @@
 <div class="page-wrapper">
   <header class="header d-flex flex-column flex-md-row align-items-center bg-white border-bottom shadow-sm">
     <app-logo class="mr-md-auto"></app-logo>
-    <p class="m-0 pt-2 pt-md-0 text-primary">Frontend <strong>Technical Assignment</strong></p>
+    <p class="m-0 pt-2 pt-md-0 header-text">Frontend <strong>Technical Assignment</strong></p>
   </header>
   <main class="container main">
     <div class="row">
       <div class="col-lg-4">
-        <div class="card">
-          <div class="card-header"><strong>Make</strong> Transfer</div>
-          <div class="card-body">
-            <form>
-              <div class="form-group">
-                <label for="fromAccount">From Account</label>
-                <input type="text" class="form-control" id="fromAccount"
-                  value="My Personal Account: €5824.76" disabled>
-              </div>
-              <div class="form-group">
-                <label for="toAccount">To Account</label>
-                <input type="text" class="form-control" id="toAccount"
-                  placeholder="type an account name">
-              </div>
-              <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="text" class="form-control" id="amount"
-                  placeholder="specify the amount">
-              </div>
-              <app-submit-button></app-submit-button>
-            </form>
-          </div>
-        </div>
+        <bb-make-transfer></bb-make-transfer>
       </div>
       <div class="col-lg-8">
-        <div class="card">
-          <div class="card-header">Transaction <strong>List</strong></div>
-          <div class="card-body">
-            <app-filter></app-filter>
-            <div>
-              <app-transaction-item>
-                <div data-test-hook='transactionColour'>1</div>
-                <div data-test-hook='transactionDate'>2</div>
-                <div data-test-hook='transactionMerchantName'>3</div>
-                <div data-test-hook='transactionType'>4</div>
-                <div data-test-hook='transactionAmount'>5</div>
-              </app-transaction-item>
-            </div>
-          </div>
-        </div>
+        <bb-transaction-list></bb-transaction-list>
       </div>
     </div>
   </main>
