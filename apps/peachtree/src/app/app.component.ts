@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   balance$: Observable<number> = this.bankFacade.balance$;
   bsModalRef!: BsModalRef;
   modelSub!: Subscription;
+  transactionSub!: Subscription;
   @ViewChild('makeTransfer')
   makeTransferComp!: MakeTransferComponent;
 
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.bankFacade.loadTransactions().subscribe();
+    this.transactionSub = this.bankFacade.loadTransactions().subscribe();
   }
 
   confirmTransfer(transferData: Transfer) {
@@ -36,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.modalService.show(ReviewTransferComponent, {
       initialState,
     });
-    this.bsModalRef.content.event.subscribe((transferDetails: Transfer) => {
+    this.modelSub = this.bsModalRef.content.event.subscribe((transferDetails: Transfer) => {
       this.bankFacade.sendAmountTo(transferDetails);
       this.makeTransferComp.reset();
     });
@@ -46,5 +47,6 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.modelSub) {
       this.modelSub.unsubscribe();
     }
+    this.transactionSub.unsubscribe();
   }
 }
