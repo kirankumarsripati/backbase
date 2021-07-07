@@ -57,7 +57,10 @@
         </div>
       </div>
       <div class="text-right">
-        <app-submit-button (submitForm)="triggerSubmit()"> </app-submit-button>
+        <app-submit-button
+          data-test-hook="makeTransfer"
+          (submitForm)="triggerSubmit()"
+        ></app-submit-button>
       </div>
     </form>
   </div>

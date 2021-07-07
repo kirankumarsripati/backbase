@@ -1,13 +1,93 @@
-import { getGreeting } from '../support/app.po';
+import {
+  getAmount,
+  getAssignment,
+  getConfirmTransferBtn,
+  getFilterInput,
+  getMakeTransferBtn,
+  getToAccount,
+  getTransactionAmount,
+  getTransactionDate,
+  getTransactionMerchantName,
+  getTransactionType,
+} from '../support/app.po';
 
 describe('peachtree', () => {
-  beforeEach(() => cy.visit('/'));
+  beforeEach(() => {
+    cy.intercept('GET', 'http://localhost:3000/transactions', {
+      fixture: 'transactions.json',
+    }).as('getTransactions');
+    cy.visit('/');
+  });
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should display assignment name', () => {
+    getAssignment().contains('Frontend Technical Assignment');
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to peachtree!');
+  it('should filter transaction list', () => {
+    getFilterInput().type('back');
+    cy.wait('@getTransactions');
+    getTransactionDate().contains('Sep. 19');
+    getTransactionMerchantName().contains('Backbase');
+    getTransactionType().contains('Salaries');
+    getTransactionAmount().contains('€5,000');
+  });
+
+  it('should validate make transfer form', () => {
+    // check if the account field is required
+    const account = getToAccount();
+    account.type('something');
+    account.clear();
+    account
+      .should('have.class', 'ng-invalid')
+      .should('have.class', 'is-invalid');
+    account
+      .parent()
+      .get('.invalid-feedback')
+      .contains('This field is required');
+
+    // check if the amount field is required
+    let amount = getAmount();
+    amount.type('123');
+    amount.clear();
+    amount
+      .should('have.class', 'ng-invalid')
+      .should('have.class', 'is-invalid');
+
+    // check if throws error for negative value
+    amount.type('-100');
+    amount
+      .should('have.class', 'ng-invalid')
+      .should('have.class', 'is-invalid');
+    amount
+      .parent()
+      .get('.invalid-feedback')
+      .contains('Amount cannot be negative');
+
+    // check if not enough error is thrown
+    amount = getAmount();
+    amount.clear();
+    amount.type('10000');
+    amount
+      .should('have.class', 'ng-invalid')
+      .should('have.class', 'is-invalid');
+    amount
+      .parent()
+      .get('.invalid-feedback')
+      .contains('There is not enough balance');
+  });
+
+  it('should transfer amount and show in transactions', () => {
+    getToAccount().type('Kirankumar');
+    getAmount().type('1000');
+    getMakeTransferBtn().click();
+
+    // click confirm transfer button
+    getConfirmTransferBtn().click();
+
+    // check if entry shows in the transaction list
+    getFilterInput().type('kumar');
+    getTransactionMerchantName().contains('Kirankumar');
+    getTransactionType().contains('Online Transfer');
+    getTransactionAmount().contains('€1,000');
   });
 });

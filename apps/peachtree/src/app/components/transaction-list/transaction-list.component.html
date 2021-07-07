@@ -7,6 +7,7 @@
     <app-filter (inputChange)="filter = $event"></app-filter>
     <div class="transaction-list">
       <app-transaction-item
+        data-test-hook="transactionItem"
         class="transaction-item"
         *ngFor="let item of transactions | filterBy: 'merchant.name':filter"
       >
