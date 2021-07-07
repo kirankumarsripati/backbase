@@ -119,6 +119,16 @@
             "jestConfig": "apps/peachtree/jest.config.js",
             "passWithNoTests": true
           }
+        },
+        "deploy": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "./node_modules/.bin/netlify deploy --prod --auth $NETLIFY_AUTH_TOKEN --dir dist/apps/peachtree --site d5550032-4f60-427f-8bcf-d65b99af82d5"
+              }
+            ]
+          }
         }
       }
     },

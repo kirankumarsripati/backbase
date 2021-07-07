@@ -1,1 +1,1 @@
-export * from './lib/bb-ui.module';
+export { BbUIModule } from './lib/bb-ui.module';
