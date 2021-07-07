@@ -63,7 +63,7 @@ app-footer footer {
 }
 
 .main {
-  padding: 60px 0;
+  padding: 60px $large-spacing;
 }
 
 .card-primary {
@@ -85,5 +85,12 @@ app-footer footer {
   .card-title {
     font-weight: normal;
     margin-bottom: 0;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    padding-right: 0;
+    padding-left: 0;
   }
 }
