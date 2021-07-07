@@ -95,4 +95,21 @@ describe('MakeTransferComponent', () => {
     expect(component.toAccount.value).toBeFalsy();
     expect(component.amount.value).toBeFalsy();
   });
+
+  it('should trigger submitForm', () => {
+    const submitSpy = jest.spyOn(component.submitForm, 'emit');
+    const touchSpy = jest.spyOn(component.transferForm, 'markAllAsTouched');
+
+    component.triggerSubmit();
+    expect(submitSpy).not.toHaveBeenCalled();
+    expect(touchSpy).toHaveBeenCalled();
+
+    touchSpy.mockClear();
+    component.balance = 2000;
+    component.toAccount.setValue('Backbase');
+    component.amount.setValue(1000);
+    component.triggerSubmit();
+    expect(submitSpy).toHaveBeenCalled();
+    expect(touchSpy).not.toHaveBeenCalled();
+  });
 });
