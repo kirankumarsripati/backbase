@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BbUIModule } from '@bb/bb-ui';
 
 import { MakeTransferComponent } from './make-transfer.component';
 
@@ -8,7 +10,11 @@ describe('MakeTransferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MakeTransferComponent ]
+      declarations: [ MakeTransferComponent ],
+      imports: [
+        ReactiveFormsModule,
+        BbUIModule,
+      ],
     })
     .compileComponents();
   });
