@@ -50,8 +50,7 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [ "libs/bb-ui/src/lib/styles" ]
-            },
-            "extractCss": true
+            }
           },
           "configurations": {
             "production": {

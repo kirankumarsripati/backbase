@@ -1,5 +1,55 @@
 @import 'main';
 
+.form-control::-webkit-input-placeholder {
+  font-style: italic;
+}
+.form-control:-moz-placeholder {
+  font-style: italic;
+}
+.form-control::-moz-placeholder {
+  font-style: italic;
+}
+.form-control::placeholder {
+  font-style: italic;
+}
+.form-control:-ms-input-placeholder {
+  font-style: italic;
+}
+
+.btn-primary {
+  background-color: $primary-orange;
+  border-color: darken($primary-orange, 8);
+}
+
+.btn-primary.focus, .btn-primary:focus,
+.btn-primary:hover {
+  background-color: darken($primary-orange, 6);
+  border-color: darken($primary-orange, 8);
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active {
+  background-color: darken($primary-orange, 4);
+  border-color: darken($primary-orange, 6);
+}
+
+.btn-secondary {
+  background-color: $secondary-white;
+  color: $color-gray1;
+}
+
+.btn-secondary.focus, .btn-secondary:focus,
+.btn-secondary:hover {
+  background-color: darken($secondary-white, 6);
+  color: $color-gray1;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active,
+.btn-secondary:not(:disabled):not(.disabled):active {
+  background-color: darken($secondary-white, 4);
+  color: $color-gray1;
+}
+
 .header {
   padding: $large-spacing;
 }
@@ -25,7 +75,7 @@ app-footer footer {
     border-top-right-radius: 15px;
     display: flex;
     align-items: center;
-    color: white;
+    color: $secondary-white;
     padding: $large-spacing;
   }
   .card-header-icon {
@@ -36,9 +86,4 @@ app-footer footer {
     font-weight: normal;
     margin-bottom: 0;
   }
-}
-
-.btn-primary {
-  background-color: $primary-orange;
-  border-color: darken($primary-orange, 8);
 }

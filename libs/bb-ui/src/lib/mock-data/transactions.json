@@ -1,5 +1,5 @@
 {
-  "data": [{
+  "transactions": [{
       "categoryCode": "#12a580",
       "dates": {
         "valueDate": 1600493600000

@@ -1,24 +1,43 @@
 <div class="card card-primary">
   <div class="card-header"><i class="card-header-icon lni lni-wallet"></i><h5 class="card-title"><strong>Make</strong> Transfer</h5></div>
   <div class="card-body">
-    <form>
-      <div class="form-group">
+    <form [formGroup]="transferForm">
+      <div class="form-group" (ngSubmit)="onSubmitForm()">
         <label for="fromAccount">From Account</label>
         <input type="text" class="form-control" id="fromAccount"
-          value="My Personal Account: €5824.76" disabled>
+          value="My Personal Account: {{ balance | currency:'EUR':'symbol':'1.0-2' }}" disabled>
       </div>
       <div class="form-group">
         <label for="toAccount">To Account</label>
         <input type="text" class="form-control" id="toAccount"
+          formControlName="toAccount"
+          [class.is-invalid]="toAccount.invalid && (toAccount.dirty || toAccount.touched)"
           placeholder="type an account name">
+        <div class="invalid-feedback">
+          This field is required
+        </div>
       </div>
       <div class="form-group">
         <label for="amount">Amount</label>
-        <input type="text" class="form-control" id="amount"
-          placeholder="specify the amount">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">€</div>
+          </div>
+          <input type="number" class="form-control" id="amount"
+            formControlName="amount"
+            [class.is-invalid]="amount.invalid && (amount.dirty || amount.touched)"
+            placeholder="specify the amount">
+          <div class="invalid-feedback">
+            <div *ngIf="amount.errors?.required">This field is required</div>
+            <div *ngIf="amount.errors?.min">Amount cannot be negative</div>
+            <div *ngIf="amount.errors?.notEnough">There is not enough balance</div>
+          </div>
+        </div>
       </div>
       <div class="text-right">
-        <app-submit-button></app-submit-button>
+        <app-submit-button
+          (submitForm)="onSubmitForm()">
+        </app-submit-button>
       </div>
     </form>
   </div>

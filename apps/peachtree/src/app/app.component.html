@@ -7,10 +7,15 @@
   <main class="container main">
     <div class="row">
       <div class="col-lg-4">
-        <bb-make-transfer></bb-make-transfer>
+        <bb-make-transfer
+          #makeTransfer
+          [balance]="(balance$ | async) || 0"
+          [allowedMinBalance]="bankFacade.getAllowedMinBalance()"
+          (submitForm)="confirmTransfer($event)"
+        ></bb-make-transfer>
       </div>
       <div class="col-lg-8">
-        <bb-transaction-list [transactions]="transactions"></bb-transaction-list>
+        <bb-transaction-list [transactions]="(transactions$ | async) || []"></bb-transaction-list>
       </div>
     </div>
   </main>

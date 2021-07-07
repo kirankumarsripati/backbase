@@ -16,3 +16,8 @@ export interface Transaction {
     accountNumber: string;
   }
 }
+
+export interface Transfer {
+  toAccount: string;
+  amount: number;
+}
