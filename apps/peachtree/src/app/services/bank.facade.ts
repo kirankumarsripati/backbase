@@ -6,7 +6,8 @@ import { BankService } from './bank.service';
 
 @Injectable()
 export class BankFacade {
-  private transactionsSubj: BehaviorSubject<Transaction[]> = new BehaviorSubject<Transaction[]>([]);
+  private transactionsSubj: BehaviorSubject<Transaction[]> =
+    new BehaviorSubject<Transaction[]>([]);
   private transactions: Transaction[] = [];
   private balanceSubj: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   transactions$ = this.transactionsSubj.asObservable();
@@ -22,39 +23,43 @@ export class BankFacade {
       .pipe(
         map((transactions: Transaction[]) => {
           const sorted = transactions.sort((a, b) => {
-            return new Date(b.dates.valueDate).getTime() - new Date(a.dates.valueDate).getTime();
-          })
+            return (
+              new Date(b.dates.valueDate).getTime() -
+              new Date(a.dates.valueDate).getTime()
+            );
+          });
           this.transactionsSubj.next(sorted);
           this.transactions = transactions;
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 
   sendAmountTo(transactionDetails: Transfer) {
     this.transactions.unshift({
-      categoryCode: "#d51271",
+      categoryCode: '#d51271',
       dates: {
         valueDate: new Date().getTime(),
       },
       transaction: {
         amountCurrency: {
           amount: transactionDetails.amount,
-          currencyCode: "EUR",
+          currencyCode: 'EUR',
         },
-        type: "Online Transfer",
-        creditDebitIndicator: "DBIT",
+        type: 'Online Transfer',
+        creditDebitIndicator: 'DBIT',
       },
       merchant: {
         name: transactionDetails.toAccount,
         accountNumber: transactionDetails.toAccount,
-      }
+      },
     });
     this.transactionsSubj.next(this.transactions.slice());
   }
 
   calculateBalance(transactions: Transaction[]) {
     let balance = 0;
-    transactions.forEach(item => {
+    transactions.forEach((item) => {
       if (item.transaction.creditDebitIndicator === 'DBIT') {
         balance -= +item.transaction.amountCurrency.amount;
       } else {
@@ -67,6 +72,4 @@ export class BankFacade {
   getAllowedMinBalance() {
     return -500;
   }
-
-
 }

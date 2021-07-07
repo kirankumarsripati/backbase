@@ -19,6 +19,6 @@ const COMPONENTS = [
   exports: COMPONENTS,
   providers: [],
   bootstrap: [],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class BbUIModule { }
+export class BbUIModule {}

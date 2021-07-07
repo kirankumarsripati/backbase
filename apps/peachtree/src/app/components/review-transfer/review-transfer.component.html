@@ -1,6 +1,11 @@
 <div class="modal-header">
   <h4 class="modal-title pull-left"><strong>Review</strong> Transfer</h4>
-  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -9,10 +14,17 @@
   <p class="mb-2"><strong>It will be send to account.</strong></p>
   <p>{{ transferData.toAccount }}</p>
   <p class="mb-2"><strong>With the amount of:</strong></p>
-  <p>{{ transferData.amount | currency:'EUR':'symbol':'1.0-2' }}</p>
+  <p>{{ transferData.amount | currency: 'EUR':'symbol':'1.0-2' }}</p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">Close</button>
-  <button type="button" class="btn btn-primary"
-    (click)="event.emit(transferData); bsModalRef.hide()">Send Transfer</button>
+  <button type="button" class="btn btn-secondary" (click)="bsModalRef.hide()">
+    Close
+  </button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="event.emit(transferData); bsModalRef.hide()"
+  >
+    Send Transfer
+  </button>
 </div>

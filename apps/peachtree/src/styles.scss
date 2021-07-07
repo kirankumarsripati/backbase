@@ -21,7 +21,8 @@
   border-color: darken($primary-orange, 8);
 }
 
-.btn-primary.focus, .btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:focus,
 .btn-primary:hover {
   background-color: darken($primary-orange, 6);
   border-color: darken($primary-orange, 8);
@@ -38,7 +39,8 @@
   color: $color-gray1;
 }
 
-.btn-secondary.focus, .btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:focus,
 .btn-secondary:hover {
   background-color: darken($secondary-white, 6);
   color: $color-gray1;

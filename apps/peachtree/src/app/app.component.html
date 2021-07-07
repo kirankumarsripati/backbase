@@ -1,8 +1,20 @@
 <div class="background"></div>
 <div class="page-wrapper">
-  <header class="header d-flex flex-column flex-md-row align-items-center bg-white border-bottom shadow-sm">
+  <header
+    class="
+      header
+      d-flex
+      flex-column flex-md-row
+      align-items-center
+      bg-white
+      border-bottom
+      shadow-sm
+    "
+  >
     <app-logo class="mr-md-auto"></app-logo>
-    <p class="m-0 pt-2 pt-md-0 header-text">Frontend <strong>Technical Assignment</strong></p>
+    <p class="m-0 pt-2 pt-md-0 header-text">
+      Frontend <strong>Technical Assignment</strong>
+    </p>
   </header>
   <main class="container main">
     <div class="row">
@@ -15,7 +27,9 @@
         ></bb-make-transfer>
       </div>
       <div class="col-lg-8">
-        <bb-transaction-list [transactions]="(transactions$ | async) || []"></bb-transaction-list>
+        <bb-transaction-list
+          [transactions]="(transactions$ | async) || []"
+        ></bb-transaction-list>
       </div>
     </div>
   </main>

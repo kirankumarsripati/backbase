@@ -9,11 +9,10 @@ describe('ReviewTransferComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReviewTransferComponent ],
+      declarations: [ReviewTransferComponent],
       imports: [ModalModule.forRoot()],
       providers: [BsModalRef],
-    })
-    .compileComponents();
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -22,7 +21,7 @@ describe('ReviewTransferComponent', () => {
     component.transferData = {
       toAccount: 'Backbase',
       amount: 1000,
-    }
+    };
     fixture.detectChanges();
   });
 

@@ -4,10 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
  * TODO: Write description
  */
 @Pipe({
-  name: 'filterBy'
+  name: 'filterBy',
 })
 export class FilterByPipe implements PipeTransform {
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transform(input: any, property: string, search: string = ''): any {
     if (!Array.isArray(input) || search === '') {
@@ -18,8 +17,10 @@ export class FilterByPipe implements PipeTransform {
     const propertyLevels = property.split('.');
     const isNested = propertyLevels.length > 0;
 
-    return input.filter(item => {
-      const itemValue = isNested ? this.getDeepValue(item, propertyLevels) : item[property];
+    return input.filter((item) => {
+      const itemValue = isNested
+        ? this.getDeepValue(item, propertyLevels)
+        : item[property];
       if (typeof itemValue === 'string') {
         return itemValue.toLowerCase().includes(search);
       }
@@ -39,5 +40,4 @@ export class FilterByPipe implements PipeTransform {
     }
     return itemValue;
   }
-
 }

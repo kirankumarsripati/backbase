@@ -32,8 +32,10 @@ export class AppComponent implements OnInit, OnDestroy {
   confirmTransfer(transferData: Transfer) {
     const initialState = {
       transferData,
-    }
-    this.bsModalRef = this.modalService.show(ReviewTransferComponent, { initialState });
+    };
+    this.bsModalRef = this.modalService.show(ReviewTransferComponent, {
+      initialState,
+    });
     this.bsModalRef.content.event.subscribe((transferDetails: Transfer) => {
       this.bankFacade.sendAmountTo(transferDetails);
       this.makeTransferComp.reset();

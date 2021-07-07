@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { Transaction } from '../api-interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BankService {
   model = 'transactions';

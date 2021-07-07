@@ -51,7 +51,7 @@ export class MakeTransferComponent {
     };
   }
 
-  onSubmitForm() {
+  triggerSubmit() {
     if (this.transferForm.valid) {
       this.submitForm.emit(this.transferForm.value);
     } else {
