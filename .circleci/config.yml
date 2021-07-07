@@ -32,9 +32,9 @@ set_env: &set_env
 
 yarn_cache: &yarn_cache
   keys:
-    - node-deps-node12-{{ checksum "yarn.lock" }}
+    - node-deps-node14-{{ checksum "yarn.lock" }}
     # fallback to using the latest cache if no exact match is found
-    - node-deps-node12-
+    - node-deps-node14-
 
 deploy_cache: &deploy_cache
   key: last-deploy-sha
@@ -53,7 +53,7 @@ jobs:
       - run:
           <<: *yarn_install
       - save_cache:
-          key: node-deps-node12-{{ checksum "yarn.lock" }}
+          key: node-deps-node14-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache
             - node_modules
@@ -101,13 +101,17 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: apt-get update
+      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run: apt install -y ./google-chrome*.deb;
+      - run: export CHROME_BIN=/usr/bin/google-chrome
       - restore_cache:
           <<: *deploy_cache
       - run:
           <<: *set_env
       - restore_cache:
           <<: *yarn_cache
-      - run: yarn affected:test -- ${AFFECTED_ARGS} --parallel -- --ci --code-coverage
+      - run: yarn affected:test -- ${AFFECTED_ARGS} --parallel -- --browsers=ChromeHeadlessCI --code-coverage
   e2e:
     <<: *defaults
     steps:

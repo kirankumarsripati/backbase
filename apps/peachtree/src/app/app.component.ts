@@ -26,7 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.bankFacade.loadTransactions();
+    this.bankFacade.loadTransactions().subscribe();
   }
 
   confirmTransfer(transferData: Transfer) {

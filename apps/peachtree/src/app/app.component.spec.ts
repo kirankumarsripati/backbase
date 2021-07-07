@@ -53,17 +53,17 @@ describe('AppComponent', () => {
     const transferData: Transfer = {
       toAccount: 'Backbase',
       amount: 1000,
-    }
+    };
     app.confirmTransfer(transferData);
     const transferForm = jest.spyOn(app.makeTransferComp, 'reset');
     app.bsModalRef.content.event.emit(transferData);
     expect(transferForm).toHaveBeenCalled();
-  })
+  });
 
   it('should unsubscribe model subscription', () => {
     app.modelSub = new Subscription();
     const spy = jest.spyOn(app.modelSub, 'unsubscribe');
     app.ngOnDestroy();
     expect(spy).toHaveBeenCalled();
-  })
+  });
 });

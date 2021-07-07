@@ -18,21 +18,22 @@ export class BankFacade {
   }
 
   loadTransactions() {
-    return this.bankService
-      .getTransactions()
-      .pipe(
-        map((transactions: Transaction[]) => {
-          const sorted = transactions.sort((a, b) => {
-            return (
-              new Date(b.dates.valueDate).getTime() -
-              new Date(a.dates.valueDate).getTime()
-            );
-          });
-          this.transactionsSubj.next(sorted);
-          this.transactions = transactions;
-        })
-      )
-      .subscribe();
+    return this.bankService.getTransactions().pipe(
+      map((transactions: Transaction[]) => {
+        this.transactions = this.sortTransactions(transactions);
+        this.transactionsSubj.next(this.transactions.slice());
+        return this.transactions;
+      })
+    );
+  }
+
+  sortTransactions(transactions: Transaction[]) {
+    return transactions.sort((a, b) => {
+      return (
+        new Date(b.dates.valueDate).getTime() -
+        new Date(a.dates.valueDate).getTime()
+      );
+    });
   }
 
   sendAmountTo(transactionDetails: Transfer) {
@@ -67,6 +68,7 @@ export class BankFacade {
       }
     });
     this.balanceSubj.next(balance);
+    return balance;
   }
 
   getAllowedMinBalance() {
