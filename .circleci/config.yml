@@ -101,7 +101,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: apt-get update
       - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
       - run: apt install -y ./google-chrome*.deb;
       - run: export CHROME_BIN=/usr/bin/google-chrome
