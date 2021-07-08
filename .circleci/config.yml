@@ -111,7 +111,7 @@ jobs:
           <<: *set_env
       - restore_cache:
           <<: *yarn_cache
-      - run: yarn affected:test -- ${AFFECTED_ARGS} --parallel -- --browsers=ChromeHeadlessCI --code-coverage
+      - run: yarn serve:json & yarn affected:test -- ${AFFECTED_ARGS} --parallel -- --browsers=ChromeHeadlessCI --code-coverage
   e2e:
     <<: *defaults
     steps:
