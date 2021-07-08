@@ -13,9 +13,6 @@ import {
 
 describe('peachtree', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3000/transactions', {
-      fixture: 'transactions.json',
-    }).as('getTransactions');
     cy.visit('/');
   });
 
@@ -25,7 +22,6 @@ describe('peachtree', () => {
 
   it('should filter transaction list', () => {
     getFilterInput().type('back');
-    cy.wait('@getTransactions');
     getTransactionDate().contains('Sep. 19');
     getTransactionMerchantName().contains('Backbase');
     getTransactionType().contains('Salaries');
@@ -79,7 +75,7 @@ describe('peachtree', () => {
   it('should transfer amount and show in transactions', () => {
     getToAccount().type('Kirankumar');
     getAmount().type('1000');
-    getMakeTransferBtn().click();
+    getMakeTransferBtn().click().wait(500);
 
     // click confirm transfer button
     getConfirmTransferBtn().click();

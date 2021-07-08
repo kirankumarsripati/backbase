@@ -37,10 +37,12 @@ export class AppComponent implements OnInit, OnDestroy {
     this.bsModalRef = this.modalService.show(ReviewTransferComponent, {
       initialState,
     });
-    this.modelSub = this.bsModalRef.content.event.subscribe((transferDetails: Transfer) => {
-      this.bankFacade.sendAmountTo(transferDetails);
-      this.makeTransferComp.reset();
-    });
+    this.modelSub = this.bsModalRef.content.event.subscribe(
+      (transferDetails: Transfer) => {
+        this.bankFacade.sendAmountTo(transferDetails);
+        this.makeTransferComp.reset();
+      }
+    );
   }
 
   ngOnDestroy() {

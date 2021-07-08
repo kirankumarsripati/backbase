@@ -5,6 +5,7 @@ This project was generated using [Nx](https://nx.dev).
 Hosted at https://peachtree-bank-bb.netlify.app/
 
 ## Folder Structure
+
 ```
 apps/
   peachtree // main app
@@ -13,7 +14,9 @@ libs
   bb-ui // contains all the UI component library
 mock-data // for json-server
 ```
-*Notes:*
+
+_Notes:_
+
 - **bb-ui** - uses [Jasmine](https://jasmine.github.io/) to write test cases
 - **peachtree** - uses [Jest](https://jestjs.io) to write test cases
 - **peachtree-e2e** - uses [Cypress](https://www.cypress.io/) for end to end test cases
