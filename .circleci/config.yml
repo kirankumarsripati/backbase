@@ -101,17 +101,13 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - run: sudo apt-get update
-      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - run: sudo apt install -y ./google-chrome*.deb;
-      - run: export CHROME_BIN=/usr/bin/google-chrome
       - restore_cache:
           <<: *deploy_cache
       - run:
           <<: *set_env
       - restore_cache:
           <<: *yarn_cache
-      - run: yarn serve:json & yarn affected:test -- ${AFFECTED_ARGS} --parallel -- --browsers=ChromeHeadlessCI --code-coverage
+      - run: yarn serve:json & yarn affected:test -- ${AFFECTED_ARGS} --parallel --code-coverage
   e2e:
     <<: *defaults
     steps:
